@@ -1,0 +1,146 @@
+@import '../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+
+$main-height: 70px;
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-family: $primary-font, sans-serif;
+    padding: 0 5%;
+    height: $main-height;
+    background-color: $primary-color;
+
+    .logo {
+        float: left;
+        width: 10%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .links {
+        float: right;
+        padding: 0;
+        margin: 0;
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        li {
+            list-style: none;
+
+            .search {
+                float: left;
+                background-color: $primary-color;
+                color: #fff;
+                font-family: $primary-font, sans-serif;
+                outline: none;
+                font-size: 20px;
+            }
+        }
+
+        a {
+            display: block;
+            padding: 1em;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .icon-burger {
+        display: none;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .line {
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            margin: 5px;
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}
+
+#nav-toggle {
+    position: absolute;
+    top: -$main-height;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        .logo {
+            float: none;
+            width: auto;
+            justify-content: center;
+        }
+
+        .links {
+            float: none;
+            position: fixed;
+            z-index: 9;
+            left: 0;
+            right: 0;
+            top: $main-height;
+            bottom: 100%;
+            width: auto;
+            height: auto;
+            flex-direction: column;
+            justify-content: space-evenly;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: all 0.5s ease-in-out;
+
+            a {
+                font-size: 20px;
+            }
+
+            li {
+                .search {
+                    width: 15rem;
+                }
+            }
+        }
+
+        :checked ~ .links {
+            bottom: 0;
+        }
+
+        .icon-burger {
+            display: block;
+        }
+
+        :checked ~ .icon-burger .line {
+            &:nth-child(1) {
+                transform: translateY(10px) rotate(225deg);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-10px) rotate(-225deg);
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+            }
+        }
+    }
+}
