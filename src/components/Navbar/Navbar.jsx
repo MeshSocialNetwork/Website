@@ -1,4 +1,7 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
 import './navbar.scss';
 
 class Navbar extends React.Component {
@@ -9,11 +12,10 @@ class Navbar extends React.Component {
                 <div className='logo'>Mesh</div>
                 <ul className='links'>
                     <li>
-                        <input
-                            type='text'
-                            placeholder='Search Mesh'
-                            className='search'
-                        />
+                        <InputGroup className="d-flex align-items-center" controlId="search">
+                            <Form.Control type="text" placeholder="Search Mesh" />
+                            <Button type="submit" variant="outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></Button>
+                        </InputGroup>
                     </li>
                     <li>
                         <a href='#'>
