@@ -14,24 +14,24 @@ class Navbar extends React.Component {
                     <li>
                         <InputGroup className="d-flex align-items-center" controlId="search">
                             <Form.Control type="text" placeholder="Search Mesh" />
-                            <Button type="submit" variant="outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></Button>
+                            <Button type="submit" variant="outline-secondary"><i className='fa-solid fa-magnifying-glass'/></Button>
                         </InputGroup>
                     </li>
                     <li>
                         <a href='#'>
-                            <i className='fa-solid fa-bell'></i>
+                            <i className='fa-solid fa-bell'/>
                         </a>
                     </li>
                     <li>
                         <a href='#'>
-                            <i className='fa-solid fa-user'></i>
+                            <i className='fa-solid fa-user'/>
                         </a>
                     </li>
                 </ul>
                 <label htmlFor='nav-toggle' className='icon-burger'>
-                    <div className='line'></div>
-                    <div className='line'></div>
-                    <div className='line'></div>
+                    <div className='line'/>
+                    <div className='line'/>
+                    <div className='line'/>
                 </label>
             </nav>
         );
