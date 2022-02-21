@@ -1,12 +1,11 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import Post from './components/Post/Post';
+import { Link } from 'react-router-dom';
 
 function App() {
     return (
         <>
             <Navbar />
-            <br />
         </>
     );
 }
