@@ -27,16 +27,16 @@ class Navbar extends React.Component {
                         </InputGroup>
                     </li>
                     <li>
-                        <a href='#'>
+                        <button className={"notification-button"}>
                             <i className='fa-solid fa-bell' />
-                        </a>
+                        </button>
                     </li>
                     <li>
-                        <a>
+                        <button>
                             <Link to={'/profile'}>
                                 <i className='fa-solid fa-user' />
                             </Link>
-                        </a>
+                        </button>
                     </li>
                 </ul>
                 <label htmlFor='nav-toggle' className='icon-burger'>
