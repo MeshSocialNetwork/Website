@@ -1,10 +1,8 @@
 # Mesh Website
 
-<img alt="repo size" src="https://img.shields.io/github/languages/code-size/MeshSocialNetwork/Website?style=flat-square"> 
-<img alt="open issues" src="https://img.shields.io/github/issues-raw/MeshSocialNetwork/Website?style=flat-square" >
-<img alt="website status" src="https://img.shields.io/website?down_color=red&down_message=offline&style=flat-square&up_color=green&up_message=online&url=https%3A%2F%2Fmeshnetwork.app" >
+<img alt="repo size" src="https://img.shields.io/github/languages/code-size/MeshSocialNetwork/Website?style=flat-square">  <img alt="open issues" src="https://img.shields.io/github/issues-raw/MeshSocialNetwork/Website?style=flat-square" > <img alt="website status" src="https://img.shields.io/website?down_color=red&down_message=offline&style=flat-square&up_color=green&up_message=online&url=https%3A%2F%2Fmeshnetwork.app" >
 
-Mesh is an attempt to surpass all existing social networks, help us to achieve this goal!
+### Mesh is an attempt to surpass all existing social networks, help us to achieve this goal!
 
 If you find any bugs, have suggestions for improvement or anything else, create an issue [here](https://github.com/MeshSocialNetwork/Website/issues).   
 You can also reach us via our email, we will try to answer asap.
