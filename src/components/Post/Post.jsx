@@ -1,6 +1,5 @@
 import React from 'react';
 import './post.scss';
-import { HashLoader } from 'react-spinners';
 
 class Post extends React.Component {
     constructor(props) {
@@ -13,7 +12,7 @@ class Post extends React.Component {
     }
 
     render() {
-        if (this.state.postLoaded) {
+        if (this.props.src) {
             return (
                 <div className='post-wrapper'>
                     <p className='post-title'>{this.props.title}</p>
@@ -41,8 +40,21 @@ class Post extends React.Component {
             );
         } else {
             return (
-                <div className='post-wrapper notloaded'>
-                    <HashLoader />
+                <div className='post-wrapper'>
+                    <p className='post-title'>{this.props.title}</p>
+
+                    <button>
+                        <i className='fa-solid fa-thumbs-up' />
+                    </button>
+                    <button>
+                        <i className='fa-solid fa-thumbs-down' />
+                    </button>
+                    <button>
+                        <i className='fa-solid fa-comment' />
+                    </button>
+                    <button>
+                        <i className='fa-solid fa-share' />
+                    </button>
                 </div>
             );
         }
