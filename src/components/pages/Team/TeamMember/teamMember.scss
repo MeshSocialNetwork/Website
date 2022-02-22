@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import '../../../../variables';
 
 .card {
     border: none;
     cursor: pointer;
+    width: 250px;
+    background: $secondary-color;
 }
 
 .card-user {
@@ -28,6 +31,7 @@
     transform: translateY(-6px);
     z-index: 6;
     transition: all 0.15s ease-in-out;
+    box-shadow: rgba(32, 166, 108, 0.3) 0 2px 52px 0;
 }
 
 .user-text {
@@ -93,6 +97,7 @@
             rgb(52, 146, 105) 130%
         )
         repeat scroll 0 0;
+    box-shadow: transparent 0 2px 52px 0;
 }
 
 .offline-status {
