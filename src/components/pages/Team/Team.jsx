@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Navbar from '../../Navbar/Navbar';
 import TeamMember from './TeamMember/TeamMember';
+import './team.scss';
 
 class Team extends React.Component {
     constructor(props) {
@@ -34,13 +34,7 @@ class Team extends React.Component {
     }
 
     render() {
-        return (
-            <>
-                <Navbar />
-
-                {this.state.teamMembers}
-            </>
-        );
+        return <>{this.state.teamMembers}</>;
     }
 }
 

@@ -8,13 +8,15 @@ import Settings from './components/pages/Settings/Settings';
 import Team from './components/pages/Team/Team';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Routes>
-            <Route path={'/'} element={<App />} />
-            <Route path={'/profile'} element={<Profile />} />
-            <Route path={'/settings'} element={<Settings />} />
-            <Route path={'/team'} element={<Team />} />
-        </Routes>
-    </BrowserRouter>,
+    <>
+        <BrowserRouter>
+            <App />
+            <Routes>
+                <Route path={'/profile'} element={<Profile />} />
+                <Route path={'/settings'} element={<Settings />} />
+                <Route path={'/team'} element={<Team />} />
+            </Routes>
+        </BrowserRouter>
+    </>,
     document.getElementById('root')
 );
