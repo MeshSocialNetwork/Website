@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import TeamMember from './TeamMember/TeamMember';
+import Loading from 'react-fullscreen-loading';
 import './team.scss';
 
 class Team extends React.Component {
@@ -8,7 +9,8 @@ class Team extends React.Component {
         super(props);
 
         this.state = {
-            teamMembers: []
+            teamMembers: [],
+            loaded: false
         };
     }
 
@@ -27,14 +29,27 @@ class Team extends React.Component {
                 });
 
                 this.setState({
-                    teamMembers: teamMembers
+                    teamMembers: teamMembers,
+                    loaded: true
                 });
             })
             .catch((error) => console.log(error));
     }
 
     render() {
-        return <>{this.state.teamMembers}</>;
+        if (this.state.loaded === false) {
+            return (
+                <>
+                    <Loading
+                        loading={true}
+                        background={'#141d2b'}
+                        loaderColor={'#fff'}
+                    />
+                </>
+            );
+        } else {
+            return <>{this.state.teamMembers}</>;
+        }
     }
 }
 

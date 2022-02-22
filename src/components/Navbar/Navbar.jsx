@@ -33,6 +33,9 @@ class Navbar extends React.Component {
                         <Link to='/settings'>Settings</Link>
                     </li>
                     <li>
+                        <Link to='/team'>Team</Link>
+                    </li>
+                    <li>
                         <InputGroup
                             className='d-flex align-items-center input-group'
                             controlId='search'
