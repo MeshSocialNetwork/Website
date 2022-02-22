@@ -9,12 +9,11 @@ class Navbar extends React.Component {
     render() {
         return (
             <nav>
-                <input id='nav-toggle' type='checkbox' />
                 <div className='logo'>Mesh</div>
                 <ul className='links'>
                     <li>
                         <InputGroup
-                            className='d-flex align-items-center'
+                            className='d-flex align-items-center input-group'
                             controlId='search'
                         >
                             <Form.Control
@@ -27,23 +26,18 @@ class Navbar extends React.Component {
                         </InputGroup>
                     </li>
                     <li>
-                        <button className={"notification-button"}>
+                        <button className={'notification-button'}>
                             <i className='fa-solid fa-bell' />
                         </button>
                     </li>
                     <li>
-                        <button>
+                        <button className={'profile-button'}>
                             <Link to={'/profile'}>
                                 <i className='fa-solid fa-user' />
                             </Link>
                         </button>
                     </li>
                 </ul>
-                <label htmlFor='nav-toggle' className='icon-burger'>
-                    <div className='line' />
-                    <div className='line' />
-                    <div className='line' />
-                </label>
             </nav>
         );
     }
