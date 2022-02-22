@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+.card {
+    border: none;
+    cursor: pointer;
+}
+
+.card-user {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 1rem;
+    position: relative;
+    width: 250px;
+    height: 80px;
+    border-radius: 6px;
+    padding: 10px;
+    background: #292d33;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.15s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.card-user:hover {
+    transform: translateY(-6px);
+    z-index: 6;
+    transition: all 0.15s ease-in-out;
+}
+
+.user-text {
+    flex: 0.9;
+    overflow: hidden;
+}
+
+.user-text > h1 {
+    font-size: 1.1rem;
+    color: #fff;
+    -webkit-box-orient: vertical;
+    font-weight: 800;
+    margin: 0 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-text > h2 {
+    width: 98%;
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, 0.7);
+    font-weight: 700;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 0 0 5px;
+}
+
+.avatar > img {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+/* Status classes */
+.dnd-status {
+    background: rgba(0, 0, 0, 0)
+        linear-gradient(
+            -35deg,
+            rgba(252, 13, 38, 0.5) 20%,
+            rgb(213, 44, 26) 130%
+        )
+        repeat scroll 0 0;
+}
+
+.idle-status {
+    background: rgba(0, 0, 0, 0)
+        linear-gradient(
+            -35deg,
+            rgba(255, 129, 51, 0.5) 20%,
+            rgb(255, 159, 25) 130%
+        )
+        repeat scroll 0 0;
+}
+
+.online-status {
+    background: rgba(0, 0, 0, 0)
+        linear-gradient(
+            -35deg,
+            rgba(37, 187, 90, 0.5) 20%,
+            rgb(52, 146, 105) 130%
+        )
+        repeat scroll 0 0;
+}
+
+.offline-status {
+    background: rgba(0, 0, 0, 0)
+        linear-gradient(
+            -35deg,
+            rgba(158, 158, 158, 0.5) 20%,
+            rgb(125, 125, 125) 130%
+        )
+        repeat scroll 0 0;
+}
