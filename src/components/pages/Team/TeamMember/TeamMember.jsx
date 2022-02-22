@@ -1,4 +1,5 @@
 import React from 'react';
+import './teamMember.scss';
 
 class TeamMember extends React.Component {
     getDivClassName() {
