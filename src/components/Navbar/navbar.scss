@@ -1,90 +1,116 @@
-@import '../../variables';
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+/*   color variables */
+$clr-gray100: #f9fbff;
+$clr-gray150: #f4f6fb;
+$clr-gray200: #eef1f6;
+$clr-gray300: #e1e5ee;
+$clr-gray400: #767b91;
+$clr-gray500: #4f546c;
+$clr-gray600: #2a324b;
+$clr-gray700: #161d34;
 
-$main-height: 70px;
+/*   border radius */
+$radius: 0.2rem;
 
-body {
-    padding: 0;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
-nav {
-    z-index: 10;
-    left: 0;
-    right: 0;
-    top: 0;
-    font-family: $primary-font, sans-serif;
-    padding: 0 5%;
-    height: $main-height;
-    background-color: $primary-color;
+body {
+    font-family: 'Andika New Basic', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    height: 100vh;
+}
 
-    .logo {
-        float: left;
-        width: 10%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        font-size: 24px;
-        color: #fff;
+.nav {
+    border-bottom: 1px solid $clr-gray200;
+
+    &__toggle {
+        position: absolute;
+        cursor: pointer;
+        margin: 0 1rem;
+        right: 0;
+
+        svg {
+            width: 1.5rem;
+            fill: #fff;
+        }
+
+        .close {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .menu {
+            margin-top: 1rem;
+        }
     }
 
-    .links {
-        float: right;
-        padding: 0;
-        margin: 0;
-        width: 70%;
-        height: 100%;
+    &__checkbox {
+        display: none;
+    }
+
+    &__menu {
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        gap: 2rem;
         align-items: center;
+        margin: 1rem;
 
         li {
             list-style: none;
+            display: none;
 
-            .search {
-                float: left;
-                background-color: $primary-color;
-                color: #fff;
-                font-family: $primary-font, sans-serif;
-                outline: none;
-                font-size: 20px;
+            &:first-child {
+                margin-right: auto;
+                display: block;
             }
         }
 
         a {
-            display: block;
-            padding: 1em;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
             text-decoration: none;
+            color: inherit;
+            font-size: 1.2rem;
+        }
+
+        svg {
+            width: 1.5rem;
+            fill: $clr-gray600;
         }
     }
 }
 
-@media screen and (max-width: 768px) {
-    nav {
-        position: relative;
+// Toggle the hamburger menu in mobile view
+#nav__checkbox:checked ~ ul.nav__menu li {
+    display: block;
+}
 
-        .logo {
+//Change from menu to close icon on tap
+#nav__checkbox:checked ~ label.nav__toggle .close {
+    display: block;
+}
+
+#nav__checkbox:checked ~ label.nav__toggle .menu {
+    display: none;
+}
+
+// Desktop view
+@media only screen and (min-width: 560px) {
+    .nav {
+        &__toggle {
             display: none;
         }
 
-        ul {
-            float: none !important;
-            width: 100%;
+        &__menu {
+            flex-direction: row;
 
             li {
+                display: block;
             }
         }
     }
-}
-
-button {
-    background: none;
-    border: none;
-}
-
-.notification-button {
-    color: #fff;
 }
