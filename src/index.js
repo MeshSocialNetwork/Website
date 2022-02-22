@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Profile from './components/Profile/Profile';
-import Settings from './components/Settings/Settings';
+import Profile from './components/pages/Profile/Profile';
+import Settings from './components/pages/Settings/Settings';
 
 ReactDOM.render(
     <BrowserRouter>
