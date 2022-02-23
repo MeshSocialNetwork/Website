@@ -3,19 +3,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { CircleLoader } from 'react-spinners';
 import './navbar.scss';
 import logo from '../../images/mesh-logo.png';
 
 class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            imageLoaded: false
-        };
-    }
-
     render() {
         return (
             <nav className='nav'>
@@ -34,19 +25,8 @@ class Navbar extends React.Component {
                 </label>
                 <ul className='nav__menu'>
                     <li>
-                        {this.state.imageLoaded ? null : (
-                            <CircleLoader loading={true} />
-                        )}
-
                         <Link to={'/'}>
-                            <img
-                                src={logo}
-                                alt={''}
-                                className={'logo'}
-                                onLoad={() =>
-                                    this.setState({ imageLoaded: true })
-                                }
-                            />
+                            <img src={logo} alt={''} className={'logo'} />
                         </Link>
                     </li>
                     <li>
