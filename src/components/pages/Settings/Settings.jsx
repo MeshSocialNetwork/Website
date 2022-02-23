@@ -1,8 +1,14 @@
 import React from 'react';
+import App from '../../../App';
 
 class Settings extends React.Component {
     render() {
-        return <p>Settings</p>;
+        return (
+            <>
+                <App />
+                <p>Settings</p>
+            </>
+        );
     }
 }
 

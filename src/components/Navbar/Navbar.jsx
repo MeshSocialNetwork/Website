@@ -37,12 +37,17 @@ class Navbar extends React.Component {
                         {this.state.imageLoaded ? null : (
                             <CircleLoader loading={true} />
                         )}
-                        <img
-                            src={logo}
-                            alt={''}
-                            className={'logo'}
-                            onLoad={() => this.setState({ imageLoaded: true })}
-                        />
+
+                        <Link to={'/'}>
+                            <img
+                                src={logo}
+                                alt={''}
+                                className={'logo'}
+                                onLoad={() =>
+                                    this.setState({ imageLoaded: true })
+                                }
+                            />
+                        </Link>
                     </li>
                     <li>
                         <Link to='/profile'>Profile</Link>
