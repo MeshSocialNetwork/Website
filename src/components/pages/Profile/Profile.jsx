@@ -1,8 +1,14 @@
 import React from 'react';
+import App from '../../../App';
 
 class Profile extends React.Component {
     render() {
-        return <p>Hello World</p>;
+        return (
+            <>
+                <App />
+                <p>Hello World</p>
+            </>
+        );
     }
 }
 

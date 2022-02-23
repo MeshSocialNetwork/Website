@@ -3,6 +3,8 @@ import axios from 'axios';
 import TeamMember from './TeamMember/TeamMember';
 import Loading from 'react-fullscreen-loading';
 import './team.scss';
+import App from '../../../App';
+const config = require('../../../config.json');
 
 class Team extends React.Component {
     constructor(props) {
@@ -16,7 +18,7 @@ class Team extends React.Component {
 
     componentDidMount() {
         axios
-            .get('https://meshnetwork.app/api/discord')
+            .get(config.DISCORD_ENDPOINT)
             .then((result) => {
                 let teamMembers = [];
 
@@ -48,7 +50,12 @@ class Team extends React.Component {
                 </>
             );
         } else {
-            return <>{this.state.teamMembers}</>;
+            return (
+                <>
+                    <App />
+                    {this.state.teamMembers}
+                </>
+            );
         }
     }
 }
