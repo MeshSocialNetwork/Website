@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 const config = require('../../../config.json');
 
 const Register = () => {
@@ -19,6 +20,12 @@ const Register = () => {
         setPassword(event.target.value);
     };
 
+    const clearValues = () => {
+        setUsername('');
+        setPassword('');
+        setEmail('');
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -35,11 +42,37 @@ const Register = () => {
                     console.log('Registered successfully');
 
                     return (window.location = '/');
-                } else {
-                    console.log('Something went wrong');
                 }
             })
-            .catch((error) => console.log(error.response.data.message));
+            .catch((error) => {
+                const errorMsg = error.response.data.message;
+
+                console.log(error.response.data.message);
+
+                if (error.response.data.message === 'Email already used') {
+                    toast.error('This E-Mail is already used!', {
+                        position: 'top-right',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined
+                    });
+                } else if (errorMsg === 'User already exists') {
+                    toast.error('This username is already used!', {
+                        position: 'top-right',
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: false,
+                        progress: undefined
+                    });
+                }
+
+                clearValues();
+            });
     };
 
     return (
