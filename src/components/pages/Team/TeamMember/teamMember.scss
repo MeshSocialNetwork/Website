@@ -50,6 +50,10 @@ $font: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     box-shadow: rgba(255, 159, 25, 0.3) 0 2px 52px 0;
 }
 
+.card-user.offline-status:hover {
+    box-shadow: rgba(142, 125, 105, 0.3) 0 2px 52px 0;
+}
+
 .user-text {
     flex: 0.9;
     overflow: hidden;
