@@ -1,33 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import config from '../../../config.json';
-import { Redirect } from 'react-router-dom';
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
+const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-        this.state = {
-            username: '',
-            password: ''
-        };
-    }
-
-    handleUsernameChange = (event) => {
-        this.setState({ username: event.target.value });
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
     };
 
-    handlePasswordChange = (event) => {
-        this.setState({ password: event.target.value });
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
     };
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        const credentials = this.state;
-
-        console.log(credentials);
-        console.log(this.state.username);
+        const credentials = {
+            username: username,
+            password: password
+        };
 
         axios
             .post(config.LOGIN_ENDPOINT, credentials)
@@ -43,28 +36,26 @@ class Login extends React.Component {
             .catch((error) => console.log(error.response.data.message));
     };
 
-    render() {
-        return (
-            <>
-                <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        placeholder={'Username'}
-                        type={'text'}
-                        value={this.state.username}
-                        onChange={this.handleUsernameChange}
-                    />
-                    <input
-                        placeholder={'Password'}
-                        type={'password'}
-                        value={this.state.password}
-                        onChange={this.handlePasswordChange}
-                    />
-                    <button type={'submit'}>Login</button>
-                </form>
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    placeholder={'Username'}
+                    type={'text'}
+                    value={username}
+                    onChange={handleUsernameChange}
+                />
+                <input
+                    placeholder={'Password'}
+                    type={'password'}
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+                <button type={'submit'}>Login</button>
+            </form>
+        </>
+    );
+};
 
 export default Login;

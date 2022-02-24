@@ -1,38 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 const config = require('../../../config.json');
 
-class Register extends React.Component {
-    constructor(props) {
-        super(props);
+const Register = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
 
-        this.state = {
-            username: '',
-            password: '',
-            email: ''
-        };
-    }
-
-    handleUsernameChange = (event) => {
-        this.setState({ username: event.target.value });
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
     };
 
-    handleEmailChange = (event) => {
-        this.setState({ email: event.target.value });
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
     };
 
-    handlePasswordChange = (event) => {
-        this.setState({ password: event.target.value });
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
     };
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
-        const credentials = this.state;
-
-        console.log(credentials);
-        console.log(this.state.username);
+        const credentials = {
+            username: username,
+            password: password,
+            email: email
+        };
 
         axios
             .post(config.REGISTER_ENDPOINT, credentials)
@@ -48,34 +42,32 @@ class Register extends React.Component {
             .catch((error) => console.log(error.response.data.message));
     };
 
-    render() {
-        return (
-            <>
-                <h1>Register</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        placeholder={'E-Mail'}
-                        type={'email'}
-                        value={this.state.email}
-                        onChange={this.handleEmailChange}
-                    />
-                    <input
-                        placeholder={'Username'}
-                        type={'text'}
-                        value={this.state.username}
-                        onChange={this.handleUsernameChange}
-                    />
-                    <input
-                        placeholder={'Password'}
-                        type={'password'}
-                        value={this.state.password}
-                        onChange={this.handlePasswordChange}
-                    />
-                    <button type={'submit'}>Register</button>
-                </form>
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <h1>Register</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    placeholder={'E-Mail'}
+                    type={'email'}
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+                <input
+                    placeholder={'Username'}
+                    type={'text'}
+                    value={username}
+                    onChange={handleUsernameChange}
+                />
+                <input
+                    placeholder={'Password'}
+                    type={'password'}
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+                <button type={'submit'}>Register</button>
+            </form>
+        </>
+    );
+};
 
 export default Register;
