@@ -40,7 +40,7 @@ class Register extends React.Component {
                 if (response.data.message) {
                     console.log('Registered successfully');
 
-                    return <Redirect to={'/'} />;
+                    return (window.location = '/');
                 } else {
                     console.log('Something went wrong');
                 }
