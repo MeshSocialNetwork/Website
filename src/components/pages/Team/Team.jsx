@@ -4,6 +4,7 @@ import TeamMember from './TeamMember/TeamMember';
 import Loading from 'react-fullscreen-loading';
 import './team.scss';
 import App from '../../../App';
+import { toast } from 'react-toastify';
 const config = require('../../../config.json');
 
 const Team = () => {
@@ -41,7 +42,19 @@ const Team = () => {
                 setTeamMembers(teamMembers);
                 setLoaded(true);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+
+                toast.error('Something went wrong!', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined
+                });
+            });
     }, []);
 
     if (!loaded) {
