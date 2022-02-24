@@ -34,7 +34,20 @@ $font: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     transform: translateY(-6px);
     z-index: 6;
     transition: all 0.15s ease-in-out;
+}
+
+/* Card hover status */
+
+.card-user.dnd-status:hover {
+    box-shadow: rgba(237, 25, 2, 0.3) 0 2px 52px 0;
+}
+
+.card-user.online-status:hover {
     box-shadow: rgba(32, 166, 108, 0.3) 0 2px 52px 0;
+}
+
+.card-user.idle-status:hover {
+    box-shadow: rgba(255, 159, 25, 0.3) 0 2px 52px 0;
 }
 
 .user-text {

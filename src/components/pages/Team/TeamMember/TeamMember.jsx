@@ -15,6 +15,7 @@ const TeamMember = (props) => {
                 return 'card-user offline-status';
         }
     };
+
     return (
         <>
             <div className='card'>

@@ -16,12 +16,29 @@ const Team = (props) => {
             .then((result) => {
                 let teamMembers = [];
 
+                console.log(result.data);
+
                 result.data.forEach((user) => {
                     let gif = user.avatar.includes('a_');
+                    let userRole;
 
-                    teamMembers.push(
-                        <TeamMember role={'Admin'} user={user} gif={gif} />
-                    );
+                    for (let roleName in config.roles) {
+                        let role = config.roles[roleName];
+
+                        if (role.names.includes(user.username)) {
+                            userRole = roleName;
+
+                            teamMembers.push(
+                                <TeamMember
+                                    role={userRole}
+                                    user={user}
+                                    gif={gif}
+                                />
+                            );
+
+                            break;
+                        }
+                    }
                 });
 
                 setTeamMembers(teamMembers);
