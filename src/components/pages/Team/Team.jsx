@@ -6,7 +6,7 @@ import './team.scss';
 import App from '../../../App';
 const config = require('../../../config.json');
 
-const Team = (props) => {
+const Team = () => {
     const [teamMembers, setTeamMembers] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
@@ -16,17 +16,14 @@ const Team = (props) => {
             .then((result) => {
                 let teamMembers = [];
 
-                console.log(result.data);
-
                 result.data.forEach((user) => {
                     let gif = user.avatar.includes('a_');
-                    let userRole;
 
                     for (let roleName in config.roles) {
                         let role = config.roles[roleName];
 
                         if (role.names.includes(user.username)) {
-                            userRole = roleName;
+                            let userRole = roleName;
 
                             teamMembers.push(
                                 <TeamMember
@@ -47,7 +44,7 @@ const Team = (props) => {
             .catch((error) => console.log(error));
     }, []);
 
-    if (loaded === false) {
+    if (!loaded) {
         return (
             <>
                 <Loading
