@@ -1,9 +1,13 @@
 import React from 'react';
+import App from '../../../App';
 
-class Settings extends React.Component {
-    render() {
-        return <p>Settings</p>;
-    }
-}
+const Settings = () => {
+    return (
+        <>
+            <App />
+            <p>Settings</p>
+        </>
+    );
+};
 
 export default Settings;
