@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import config from '../../../config.json';
 
@@ -29,11 +30,21 @@ const Login = () => {
                     console.log('Logged in successfully');
 
                     return (window.location = '/');
-                } else {
-                    console.log('Something went wrong');
                 }
             })
-            .catch((error) => console.log(error.response.data.message));
+            .catch((error) => {
+                console.log(error.response.data.message);
+
+                toast.error('Login failed! Wrong password / username', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    progress: undefined
+                });
+            });
     };
 
     return (

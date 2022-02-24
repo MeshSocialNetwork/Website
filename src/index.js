@@ -8,10 +8,24 @@ import Settings from './components/pages/Settings/Settings';
 import Team from './components/pages/Team/Team';
 import Login from './components/pages/Login/Login';
 import Register from './components/pages/Register/Register';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
     <>
         <BrowserRouter>
+            <ToastContainer
+                theme={'dark'}
+                position='top-right'
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <Routes>
                 <Route path={'/'} element={<App />} />
                 <Route path={'/profile'} element={<Profile />} />
