@@ -55,9 +55,9 @@ const Profile = () => {
         axios
             .get(config.CHECK_LOGIN_ENDPOINT)
             .then((result) => {
-                const username = setUsername(result.data.name);
-                const email = setEmail(result.data.email);
-                const imageURL = setImageURL(result.data.image);
+                setUsername(result.data.name);
+                setEmail(result.data.email);
+                setImageURL(result.data.image);
             })
             .catch((error) => {
                 console.log(error.response.data.message);

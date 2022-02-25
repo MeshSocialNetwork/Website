@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './register.scss';
 import ParticlesBackground from '../../Particles/ParticlesBackground';
 import RegisterInput from '../../Input/Register/RegisterInput';
