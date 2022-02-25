@@ -1,35 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import App from '../../../App';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import './profile.scss';
 
 const config = require('../../../config.json');
 
 const Profile = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [verified, setVerified] = useState(false);
-    const [image, setImage] = useState(null);
-    const [cdnID, setCdnID] = useState('');
+    const [imageURL, setImageURL] = useState('');
 
-    const sendImageToCDN = () => {
+    const sendImageToCDN = (image) => {
         axios
             .get(config.CHOOSE_CDN_ENDPOINT)
             .then((result) => {
-                setCdnID(result.data.cdn.id);
-            })
-            .catch((error) => console.log(error));
+                const cdnID = result.data.cdn.id;
 
-        const formData = new FormData();
-        formData.append('file', image);
+                const formData = new FormData();
+                formData.append('file', image);
 
-        console.log(cdnID);
+                axios({
+                    method: 'post',
+                    url: config.CHOOSE_CDN_ENDPOINT + `/${cdnID}/image`,
+                    data: formData,
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                })
+                    .then((result) => {
+                        const imageId = result.data.imageId;
+                        const cdnId = result.data.cdnId;
 
-        axios
-            .post(config.CHOOSE_CDN_ENDPOINT + `${cdnID}/image`, formData)
-            .then((result) => {
-                console.log('image upload req made');
-
-                console.log(result);
+                        axios({
+                            method: 'post',
+                            url: config.USER_IMAGE,
+                            data: { imageId: imageId, cdnId: cdnId }
+                        }).then((result) => {
+                            toast.success('Uploaded profile picture!', {
+                                position: 'top-right',
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: false,
+                                draggable: false,
+                                progress: undefined
+                            });
+                        });
+                    })
+                    .catch((error) => console.log(error));
             })
             .catch((error) => console.log(error));
     };
@@ -40,7 +57,7 @@ const Profile = () => {
             .then((result) => {
                 const username = setUsername(result.data.name);
                 const email = setEmail(result.data.email);
-                const verified = setVerified(result.data.emailVerified);
+                const imageURL = setImageURL(result.data.image);
             })
             .catch((error) => {
                 console.log(error.response.data.message);
@@ -53,19 +70,16 @@ const Profile = () => {
         <>
             <App />
 
-            <img src={''} alt={''} className={'avatar'} />
-
             <h1>{username}</h1>
             <h2>{email}</h2>
-            <h3>{verified}</h3>
+
+            <img src={imageURL} alt={''} className={'avatar'} />
 
             <input
                 type={'file'}
                 name={'upload-image'}
                 onChange={(event) => {
-                    console.log(event.target.files[0]);
-                    setImage(event.target.files[0]);
-                    sendImageToCDN();
+                    sendImageToCDN(event.target.files[0]);
                 }}
             />
         </>
