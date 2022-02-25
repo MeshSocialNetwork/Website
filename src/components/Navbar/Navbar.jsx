@@ -38,10 +38,7 @@ const Navbar = () => {
                     <Link to='/team'>Team</Link>
                 </li>
                 <li>
-                    <InputGroup
-                        className='d-flex align-items-center input-group'
-                        controlId='search'
-                    >
+                    <InputGroup className='d-flex align-items-center input-group'>
                         <Form.Control type='text' placeholder='Search Mesh' />
                         <Button type='submit' variant='outline-secondary'>
                             <i className='fa-solid fa-magnifying-glass' />
