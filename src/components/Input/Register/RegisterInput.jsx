@@ -94,6 +94,7 @@ const RegisterInput = () => {
                     placeholder='Username'
                     onChange={handleUsernameChange}
                     value={username}
+                    className={'input'}
                 />
             </div>
             <div className='register__box'>
@@ -102,6 +103,7 @@ const RegisterInput = () => {
                     <i className='fas fa-asterisk' />
                 </label>
                 <input
+                    className={'input'}
                     id='mail'
                     type='email'
                     size='64'
@@ -120,6 +122,7 @@ const RegisterInput = () => {
                 </label>
                 <input
                     id='password'
+                    className={'input'}
                     type='password'
                     minLength='6'
                     required
@@ -132,7 +135,12 @@ const RegisterInput = () => {
                 <Link to={'/login'}>Already have an account?</Link>
             </div>
             <br />
-            <input type='submit' value='Create profile' id='register__btn' />
+            <input
+                type='submit'
+                value='Create profile'
+                id='register__btn'
+                className={'input'}
+            />
         </form>
     );
 };
