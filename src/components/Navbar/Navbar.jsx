@@ -38,6 +38,9 @@ const Navbar = () => {
                     <Link to='/team'>Team</Link>
                 </li>
                 <li>
+                    <Link to='/login'>Sign in</Link>
+                </li>
+                <li>
                     <InputGroup className='d-flex align-items-center input-group'>
                         <Form.Control type='text' placeholder='Search Mesh' />
                         <Button type='submit' variant='outline-secondary'>

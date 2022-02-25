@@ -3,6 +3,7 @@ import axios from 'axios';
 import config from '../../../config.json';
 import { toast } from 'react-toastify';
 import './loginInput.scss';
+import { Link } from 'react-router-dom';
 
 const LoginInput = () => {
     const [username, setUsername] = useState('');
@@ -83,6 +84,9 @@ const LoginInput = () => {
                     onChange={handlePasswordChange}
                     value={password}
                 />
+            </div>
+            <div className='register__box'>
+                <Link to={'/register'}>Dont have an account?</Link>
             </div>
             <br />
             <input
