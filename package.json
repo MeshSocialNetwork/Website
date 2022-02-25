@@ -17,8 +17,11 @@
     "react-scripts": "^5.0.0",
     "react-spinners": "^0.11.0",
     "react-toastify": "^8.2.0",
+    "react-tsparticles": "^1.41.5",
     "sass": "^1.49.7",
     "scss": "^0.2.4",
+    "tsparticles": "^1.41.5",
+    "tsparticles-preset-links": "^1.41.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
