@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-const config = require('../../../config.json');
 import './register.scss';
 import ParticlesBackground from '../../Particles/ParticlesBackground';
 import RegisterInput from '../../Input/Register/RegisterInput';
