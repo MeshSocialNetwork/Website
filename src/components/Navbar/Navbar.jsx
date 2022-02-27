@@ -7,20 +7,35 @@ import './navbar.scss';
 import logo from '../../images/mesh-logo.png';
 import axios from 'axios';
 import config from '../../config.json';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-    const [userLoaded, setUserLoaded] = useState(false);
+    let {state} = useLocation()
+
+    if(!state){
+        state = {}
+    }
+
+    if(!state.user){
+        state.user = {}
+    }
+
+    const [userLoaded, setUserLoaded] = useState(state.user);
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        if (!userLoaded) {
-            axios
-                .get(config.CHECK_LOGIN_ENDPOINT)
-                .then((result) => {
-                    setUserLoaded(result.status !== 200);
-                    setUser(result.data);
-                })
-                .catch((error) => console.log(error));
+        if(!userLoaded){
+            if(!user){
+                axios
+                    .get(config.CHECK_LOGIN_ENDPOINT)
+                    .then((result) => {
+                        setUserLoaded(result.status !== 200);
+                        setUser(result.data);
+                    })
+                    .catch((error) => console.log(error));
+            }else{
+                setUserLoaded(true)
+            }
         }
     }, []);
 
@@ -46,27 +61,27 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/profile' state={user}>
+                    <Link to='/profile' state={{user: user}}>
                         Profile
                     </Link>
                 </li>
                 <li>
-                    <Link to='/settings' state={user}>
+                    <Link to='/settings' state={{user: user}}>
                         Settings
                     </Link>
                 </li>
                 <li>
-                    <Link to='/team' state={user}>
+                    <Link to='/team' state={{user: user}}>
                         Team
                     </Link>
                 </li>
                 <li>
                     {!userLoaded ? (
-                        <Link to={'/login'} state={user}>
+                        <Link to={'/login'} state={{user: user}}>
                             Sign in
                         </Link>
                     ) : (
-                        <Link to={'/logout'} state={user}>
+                        <Link to={'/logout'} state={{user: user}}>
                             Logout
                         </Link>
                     )}
