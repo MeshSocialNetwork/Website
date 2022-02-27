@@ -16,26 +16,26 @@ const Navbar = () => {
         state = {}
     }
 
-    if(!state.user){
-        state.user = {}
+    let userInState = false
+
+    if(state.user){
+        if(Object.keys(state.user).length > 0){
+            userInState = true
+        }
     }
 
-    const [userLoaded, setUserLoaded] = useState(state.user);
-    const [user, setUser] = useState({});
+    const [userLoaded, setUserLoaded] = useState(userInState);
+    const [user, setUser] = useState(state.user);
 
     useEffect(() => {
         if(!userLoaded){
-            if(!user){
-                axios
-                    .get(config.CHECK_LOGIN_ENDPOINT)
-                    .then((result) => {
-                        setUserLoaded(result.status !== 200);
-                        setUser(result.data);
-                    })
-                    .catch((error) => console.log(error));
-            }else{
-                setUserLoaded(true)
-            }
+            axios
+                .get(config.CHECK_LOGIN_ENDPOINT)
+                .then((result) => {
+                    setUserLoaded(result.status !== 200);
+                    setUser(result.data);
+                })
+                .catch((error) => console.log(error));
         }
     }, []);
 
