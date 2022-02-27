@@ -31,6 +31,7 @@ const Team = () => {
                                     role={userRole}
                                     user={user}
                                     gif={gif}
+                                    key={user.id}
                                 />
                             );
 
