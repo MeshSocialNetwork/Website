@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import App from '../../../App';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import './profile.scss';
 
 const config = require('../../../config.json');
 
@@ -135,6 +134,15 @@ const Profile = () => {
             });
     }, []);
 
+    const avatarStyle = {
+        backgroundImage: `url(${imageURL})`,
+        width: '150px',
+        height: '150px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
+        borderRadius: '50%'
+    };
+
     return (
         <>
             <App />
@@ -142,7 +150,7 @@ const Profile = () => {
             <h1>{username}</h1>
             <h2>{email}</h2>
 
-            <img src={imageURL} alt={''} className={'avatar'} />
+            <div id={'avatar'} style={avatarStyle}></div>
 
             <input
                 type={'file'}

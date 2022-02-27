@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import App from '../../../App';
@@ -8,7 +8,7 @@ const User = (props) => {
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageURL, setImageURL] = useState('');
     const [chosenName, setChosenName] = useState('');
     const [loaded, setLoaded] = useState(false);
 
@@ -16,7 +16,7 @@ const User = (props) => {
         axios
             .get(`/api/user/${params.username}`)
             .then((result) => {
-                setImageUrl(result.data.image);
+                setImageURL(result.data.image);
                 setChosenName(result.data.chosenName);
                 setUsername(result.data.name);
             })
@@ -33,13 +33,22 @@ const User = (props) => {
             });
     }, []);
 
+    const avatarStyle = {
+        backgroundImage: `url(${imageURL})`,
+        width: '150px',
+        height: '150px',
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
+        borderRadius: '50%'
+    };
+
     return (
         <>
             <App />
 
             <h1>{username}</h1>
             <h2>{chosenName}</h2>
-            <img src={imageUrl} alt={''} />
+            <div id={'avatar'} style={avatarStyle}></div>
         </>
     );
 };
