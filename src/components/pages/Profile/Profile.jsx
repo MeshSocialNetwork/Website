@@ -131,18 +131,24 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        axios
-            .get(config.CHECK_LOGIN_ENDPOINT)
-            .then((result) => {
-                setUsername(result.data.name);
-                setEmail(result.data.email);
-                setImageURL(result.data.image);
-            })
-            .catch((error) => {
-                console.log(error.response.data.message);
+        if(!state || !state.user || Object.keys(state.user).length === 0){
+            axios
+                .get(config.CHECK_LOGIN_ENDPOINT)
+                .then((result) => {
+                    setUsername(result.data.name);
+                    setEmail(result.data.email);
+                    setImageURL(result.data.image);
+                })
+                .catch((error) => {
+                    console.log(error.response.data.message);
 
-                window.location = '/login';
-            });
+                    window.location = '/login';
+                });
+        }else{
+            setUsername(state.user.name);
+            setEmail(state.user.email);
+            setImageURL(state.user.image);
+        }
     }, []);
 
     const avatarStyle = {

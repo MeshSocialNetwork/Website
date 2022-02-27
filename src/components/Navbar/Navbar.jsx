@@ -16,6 +16,10 @@ const Navbar = () => {
         state = {}
     }
 
+    if(!state.user){
+        state.user = {}
+    }
+
     let userInState = false
 
     if(state.user){
@@ -56,7 +60,7 @@ const Navbar = () => {
             </label>
             <ul className='nav__menu'>
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/'} state={{user: user}}>
                         <img src={logo} alt={''} className={'logo'} />
                     </Link>
                 </li>
