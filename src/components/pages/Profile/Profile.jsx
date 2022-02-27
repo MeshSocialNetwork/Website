@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import App from '../../../App';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
 const config = require('../../../config.json');
 
 const Profile = () => {
@@ -16,12 +15,11 @@ const Profile = () => {
 
         console.log(fileSize);
 
-        if (fileSize >= 50) {
-            console.log('File is too big (over 50mb)');
-            console.log(fileSize);
+        if (fileSize >= 10) {
+            console.log('File is too big');
+
             return false;
         } else {
-            console.log(fileSize);
             return true;
         }
     };
@@ -116,6 +114,16 @@ const Profile = () => {
                     })
                     .catch((error) => console.log(error));
             }
+        } else {
+            toast.error('Image is too large! (Over 10Mb)', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined
+            });
         }
     };
 
