@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useReducer } from 'react';
-import App from '../../../App';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
+import Navbar from '../../Navbar/Navbar';
 const config = require('../../../config.json');
 
 const Profile = () => {
@@ -9,6 +10,8 @@ const Profile = () => {
     const [email, setEmail] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [isGif, setIsGif] = useState(false);
+
+    let { state } = useLocation();
 
     const validateSize = (file) => {
         const fileSize = file.size / 1024 / 1024;
@@ -153,7 +156,7 @@ const Profile = () => {
 
     return (
         <>
-            <App />
+            <Navbar state={state} />
 
             <h1>{username}</h1>
             <h2>{email}</h2>

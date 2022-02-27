@@ -1,10 +1,13 @@
 import React from 'react';
-import App from '../../../App';
+import Navbar from '../../Navbar/Navbar';
+import { useLocation } from 'react-router-dom';
 
 const Settings = () => {
+    let { state } = useLocation();
+
     return (
         <>
-            <App />
+            <Navbar state={state} />
             <p>Settings</p>
         </>
     );

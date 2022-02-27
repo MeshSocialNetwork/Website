@@ -9,19 +9,19 @@ import axios from 'axios';
 import config from '../../config.json';
 
 const Navbar = () => {
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const [userLoaded, setUserLoaded] = useState(false);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
-        axios
-            .get(config.CHECK_LOGIN_ENDPOINT)
-            .then((result) => {
-                if (result.status !== 200) {
-                    setUserLoggedIn(false);
-                } else {
-                    setUserLoggedIn(true);
-                }
-            })
-            .catch((error) => console.log(error));
+        if (!userLoaded) {
+            axios
+                .get(config.CHECK_LOGIN_ENDPOINT)
+                .then((result) => {
+                    setUserLoaded(result.status !== 200);
+                    setUser(result.data);
+                })
+                .catch((error) => console.log(error));
+        }
     }, []);
 
     return (
@@ -46,19 +46,29 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/profile'>Profile</Link>
+                    <Link to='/profile' state={user}>
+                        Profile
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/settings'>Settings</Link>
+                    <Link to='/settings' state={user}>
+                        Settings
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/team'>Team</Link>
+                    <Link to='/team' state={user}>
+                        Team
+                    </Link>
                 </li>
                 <li>
-                    {!userLoggedIn ? (
-                        <Link to={'/login'}>Sign in</Link>
+                    {!userLoaded ? (
+                        <Link to={'/login'} state={user}>
+                            Sign in
+                        </Link>
                     ) : (
-                        <Link to={'/logout'}>Logout</Link>
+                        <Link to={'/logout'} state={user}>
+                            Logout
+                        </Link>
                     )}
                 </li>
                 <li>
