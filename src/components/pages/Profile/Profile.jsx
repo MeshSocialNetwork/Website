@@ -10,45 +10,114 @@ const Profile = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [imageURL, setImageURL] = useState('');
+    const [isGif, setIsGif] = useState(false);
+
+    const validateSize = (file) => {
+        const fileSize = file.size / 1024 / 1024;
+
+        console.log(fileSize);
+
+        if (fileSize >= 50) {
+            console.log('File is too big (over 50mb)');
+            console.log(fileSize);
+            return false;
+        } else {
+            console.log(fileSize);
+            return true;
+        }
+    };
 
     const sendImageToCDN = (image) => {
-        axios
-            .get(config.CHOOSE_CDN_ENDPOINT)
-            .then((result) => {
-                const cdnID = result.data.cdn.id;
-
-                const formData = new FormData();
-                formData.append('file', image);
-
-                axios({
-                    method: 'post',
-                    url: config.CHOOSE_CDN_ENDPOINT + `/${cdnID}/image`,
-                    data: formData,
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                })
+        if (validateSize(image)) {
+            if (image.name.includes('.gif')) {
+                axios
+                    .get(config.CHOOSE_CDN_ENDPOINT)
                     .then((result) => {
-                        const imageId = result.data.imageId;
-                        const cdnId = result.data.cdnId;
+                        const cdnID = result.data.cdn.id;
+
+                        const formData = new FormData();
+                        formData.append('file', image);
 
                         axios({
                             method: 'post',
-                            url: config.USER_IMAGE,
-                            data: { imageId: imageId, cdnId: cdnId }
-                        }).then((result) => {
-                            toast.success('Uploaded profile picture!', {
-                                position: 'top-right',
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: false,
-                                draggable: false,
-                                progress: undefined
-                            });
-                        });
+                            url:
+                                config.CHOOSE_CDN_ENDPOINT +
+                                `/${cdnID}/animated`,
+                            data: formData,
+                            headers: { 'Content-Type': 'multipart/form-data' }
+                        })
+                            .then((result) => {
+                                const id = result.data.id;
+                                const cdnId = result.data.cdnId;
+
+                                axios({
+                                    method: 'post',
+                                    url: config.USER_IMAGE,
+                                    data: {
+                                        id: id,
+                                        cdnId: cdnId,
+                                        type: 'animated'
+                                    }
+                                }).then((result) => {
+                                    toast.success('Uploaded profile picture!', {
+                                        position: 'top-right',
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: false,
+                                        draggable: false,
+                                        progress: undefined
+                                    });
+                                });
+                            })
+                            .catch((error) => console.log(error));
                     })
                     .catch((error) => console.log(error));
-            })
-            .catch((error) => console.log(error));
+                setIsGif(true);
+            } else {
+                axios
+                    .get(config.CHOOSE_CDN_ENDPOINT)
+                    .then((result) => {
+                        const cdnID = result.data.cdn.id;
+
+                        const formData = new FormData();
+                        formData.append('file', image);
+
+                        axios({
+                            method: 'post',
+                            url: config.CHOOSE_CDN_ENDPOINT + `/${cdnID}/image`,
+                            data: formData,
+                            headers: { 'Content-Type': 'multipart/form-data' }
+                        })
+                            .then((result) => {
+                                const id = result.data.id;
+                                const cdnId = result.data.cdnId;
+
+                                axios({
+                                    method: 'post',
+                                    url: config.USER_IMAGE,
+                                    data: {
+                                        id: id,
+                                        cdnId: cdnId,
+                                        type: 'image'
+                                    }
+                                }).then((result) => {
+                                    toast.success('Uploaded profile picture!', {
+                                        position: 'top-right',
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: false,
+                                        draggable: false,
+                                        progress: undefined
+                                    });
+                                });
+                            })
+                            .catch((error) => console.log(error));
+                    })
+                    .catch((error) => console.log(error));
+            }
+        }
     };
 
     useEffect(() => {
