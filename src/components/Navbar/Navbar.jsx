@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import './navbar.scss';
 import logo from '../../images/mesh-logo.png';
+import axios from 'axios';
+import config from '../../config.json';
 
 const Navbar = () => {
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+    useEffect(() => {
+        axios
+            .get(config.CHECK_LOGIN_ENDPOINT)
+            .then((result) => {
+                if (result.status !== 200) {
+                    setUserLoggedIn(false);
+                } else {
+                    setUserLoggedIn(true);
+                }
+            })
+            .catch((error) => console.log(error));
+    }, []);
+
     return (
         <nav className='nav'>
             <input
@@ -38,7 +55,11 @@ const Navbar = () => {
                     <Link to='/team'>Team</Link>
                 </li>
                 <li>
-                    <Link to='/login'>Sign in</Link>
+                    {!userLoggedIn ? (
+                        <Link to={'/login'}>Sign in</Link>
+                    ) : (
+                        <Link to={'/logout'}>Logout</Link>
+                    )}
                 </li>
                 <li>
                     <InputGroup className='d-flex align-items-center input-group'>
