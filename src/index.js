@@ -12,6 +12,15 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import User from './components/pages/User/User';
 import Error from './components/pages/Error/Error';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
+const config = require('./config.json');
+
+Sentry.init({
+    dsn: config.sentry_dsn,
+    integrations: [new BrowserTracing()],
+    tracesSampleRate: 1.0
+});
 
 ReactDOM.render(
     <>
