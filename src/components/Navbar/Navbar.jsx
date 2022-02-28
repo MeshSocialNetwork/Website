@@ -10,21 +10,21 @@ import config from '../../config.json';
 import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-    let {state} = useLocation()
+    let { state } = useLocation();
 
-    if(!state){
-        state = {}
+    if (!state) {
+        state = {};
     }
 
-    if(!state.user){
-        state.user = {}
+    if (!state.user) {
+        state.user = {};
     }
 
-    let userInState = false
+    let userInState = false;
 
-    if(state.user){
-        if(Object.keys(state.user).length > 0){
-            userInState = true
+    if (state.user) {
+        if (Object.keys(state.user).length > 0) {
+            userInState = true;
         }
     }
 
@@ -32,12 +32,15 @@ const Navbar = () => {
     const [user, setUser] = useState(state.user);
 
     useEffect(() => {
-        if(!userLoaded){
+        if (!userLoaded) {
             axios
                 .get(config.CHECK_LOGIN_ENDPOINT)
                 .then((result) => {
-                    setUserLoaded(result.status !== 200);
-                    setUser(result.data);
+                    if (result.status === 200) {
+                        const isUserLoaded = true;
+                        setUserLoaded(isUserLoaded);
+                        setUser(result.data);
+                    }
                 })
                 .catch((error) => console.log(error));
         }
@@ -60,32 +63,32 @@ const Navbar = () => {
             </label>
             <ul className='nav__menu'>
                 <li>
-                    <Link to={'/'} state={{user: user}}>
+                    <Link to={'/'} state={{ user: user }}>
                         <img src={logo} alt={''} className={'logo'} />
                     </Link>
                 </li>
                 <li>
-                    <Link to='/profile' state={{user: user}}>
+                    <Link to='/profile' state={{ user: user }}>
                         Profile
                     </Link>
                 </li>
                 <li>
-                    <Link to='/settings' state={{user: user}}>
+                    <Link to='/settings' state={{ user: user }}>
                         Settings
                     </Link>
                 </li>
                 <li>
-                    <Link to='/team' state={{user: user}}>
+                    <Link to='/team' state={{ user: user }}>
                         Team
                     </Link>
                 </li>
                 <li>
                     {!userLoaded ? (
-                        <Link to={'/login'} state={{user: user}}>
+                        <Link to={'/login'} state={{ user: user }}>
                             Sign in
                         </Link>
                     ) : (
-                        <Link to={'/logout'} state={{user: user}}>
+                        <Link to={'/logout'} state={{ user: user }}>
                             Logout
                         </Link>
                     )}
