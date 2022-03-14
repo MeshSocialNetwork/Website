@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+//@ts-nocheck
+import React from 'react';
 import ParticlesBackground from '../../Particles/ParticlesBackground';
 import LoginInput from '../../Input/Login/LoginInput';
 

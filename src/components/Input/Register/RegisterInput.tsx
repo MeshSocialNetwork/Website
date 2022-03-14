@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import axios from 'axios';
 import config from '../../../config.json';
 import { toast } from 'react-toastify';
 import './registerInput.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterInput = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+    let navigate = useNavigate();
+
+    const handleUsernameChange = (event: FormEvent) => {
+        setUsername((event.target as HTMLInputElement).value);
     };
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+    const handleEmailChange = (event: FormEvent) => {
+        setEmail((event.target as HTMLInputElement).value);
     };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const handlePasswordChange = (event: FormEvent) => {
+        setPassword((event.target as HTMLInputElement).value);
     };
 
     const clearValues = () => {
@@ -28,7 +30,7 @@ const RegisterInput = () => {
         setEmail('');
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
         const credentials = {
@@ -43,7 +45,7 @@ const RegisterInput = () => {
                 if (response.data.message) {
                     console.log('Registered successfully');
 
-                    return (window.location = '/');
+                    navigate('/');
                 }
             })
             .catch((error) => {
@@ -88,8 +90,8 @@ const RegisterInput = () => {
                 <input
                     id='user'
                     type='text'
-                    maxLength='16'
-                    minLength='4'
+                    maxLength={16}
+                    minLength={4}
                     required
                     placeholder='Username'
                     onChange={handleUsernameChange}
@@ -106,8 +108,8 @@ const RegisterInput = () => {
                     className={'input'}
                     id='mail'
                     type='email'
-                    size='64'
-                    maxLength='64'
+                    size={64}
+                    maxLength={64}
                     required
                     placeholder='example@protonmail.com'
                     title='example@protonmail.com'
@@ -124,7 +126,7 @@ const RegisterInput = () => {
                     id='password'
                     className={'input'}
                     type='password'
-                    minLength='6'
+                    minLength={6}
                     required
                     placeholder='Password'
                     onChange={handlePasswordChange}

@@ -1,9 +1,10 @@
+//@ts-nocheck
 import Particles from 'react-tsparticles';
 import { loadLinksPreset } from 'tsparticles-preset-links';
 import React from 'react';
 
 const ParticlesBackground = () => {
-    const customInit = (main) => {
+    const customInit = (main: any) => {
         loadLinksPreset(main);
     };
 

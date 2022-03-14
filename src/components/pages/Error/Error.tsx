@@ -1,8 +1,9 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Error = () => {
-    const { state } = useLocation();
+    const { state }: any = useLocation();
 
     if (state) {
         switch (state.error) {

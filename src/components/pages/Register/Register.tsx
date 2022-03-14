@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import './register.scss';
 import ParticlesBackground from '../../Particles/ParticlesBackground';
