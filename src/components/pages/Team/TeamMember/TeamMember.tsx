@@ -1,6 +1,7 @@
 import './teamMember.scss';
+import React from 'react';
 
-const TeamMember = (props) => {
+const TeamMember = (props: any) => {
     const getDivClassName = () => {
         switch (props.user.status) {
             case 'offline':

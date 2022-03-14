@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TeamMember from './TeamMember/TeamMember';
-import Loading from 'react-fullscreen-loading';
 import './team.scss';
 import App from '../../../App';
 import { toast } from 'react-toastify';
@@ -15,9 +14,9 @@ const Team = () => {
         axios
             .get(config.DISCORD_ENDPOINT)
             .then((result) => {
-                let teamMembers = [];
+                let teamMembers: any = [];
 
-                result.data.forEach((user) => {
+                result.data.forEach((user: any) => {
                     let gif = user.avatar.includes('a_');
 
                     for (let roleName in config.roles) {
@@ -31,6 +30,7 @@ const Team = () => {
                                     role={userRole}
                                     user={user}
                                     gif={gif}
+                                    key={user.id}
                                 />
                             );
 
@@ -60,11 +60,7 @@ const Team = () => {
     if (!loaded) {
         return (
             <>
-                <Loading
-                    loading={true}
-                    background={'#141d2b'}
-                    loaderColor={'#fff'}
-                />
+                <p>Loading</p>
             </>
         );
     } else {

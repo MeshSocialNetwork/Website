@@ -1,0 +1,128 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-bg: #1f1f1f;
+        --bg: #282828;
+        --color: #f0f1f5;
+        --red: #b42121;
+        --green: #76a52f;
+        --light-blue: #447492;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 32px;
+}
+
+#register__title,
+input[type='submit'],
+input[type='button'],
+button {
+    text-transform: uppercase;
+}
+
+#register {
+    width: 100%;
+    max-width: 500px;
+}
+
+#register,
+#profile {
+    border-radius: 10px;
+}
+
+#register,
+#profile {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 8px;
+    padding: 16px;
+}
+
+.register__box {
+    display: inherit;
+    flex-flow: row wrap;
+    gap: 8px;
+}
+
+.register__box label {
+    display: inherit;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 100%;
+}
+
+.input {
+    border: none;
+    width: 100%;
+    padding: 8px;
+    background-color: var(--main-bg);
+}
+
+input[type='submit']:hover,
+input[type='button']:hover,
+button:hover {
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+input[type='submit']:active,
+input[type='button']:active,
+button:active {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+[class*='fa-asterisk'] {
+    color: var(--red);
+}
+
+input:focus:valid:not([type='submit']) {
+    outline: none;
+    box-shadow: 1px 1px 2px 0.4px var(--green),
+        inset 1px 1px 2px 0.4px var(--green);
+}
+
+input:focus:invalid {
+    outline: none;
+    box-shadow: 1px 1px 2px 0.4px var(--red), inset 1px 1px 2px 0.4px var(--red);
+}
+
+input[type='radio'],
+input[type='checkbox'],
+select {
+    appearance: none;
+    min-width: 20px;
+    min-height: 20px;
+    box-shadow: 0 0 0 1.5px #333;
+    transition: 0.3s all;
+}
+
+input[type='radio'] {
+    border-radius: 50%;
+}
+
+input[type='radio']:checked,
+input[type='checkbox']:checked {
+    background-color: var(--bg);
+}
+
+.contact__box label {
+    display: inherit;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 100%;
+}
+
+#mail,
+#password,
+#register__btn,
+#user {
+    color: white;
+    transition: 0.25s;
+}
+
+#register {
+    z-index: 8000 !important;
+}

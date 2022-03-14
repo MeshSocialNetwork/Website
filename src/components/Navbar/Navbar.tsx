@@ -1,12 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import './navbar.scss';
 import logo from '../../images/mesh-logo.png';
+import axios from 'axios';
+import config from '../../config.json';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+    let { state }: any = useLocation();
+
+    if (!state) {
+        state = {};
+    }
+
+    if (!state.user) {
+        state.user = {};
+    }
+
+    let userInState = false;
+
+    if (state.user) {
+        if (Object.keys(state.user).length > 0) {
+            userInState = true;
+        }
+    }
+
+    const [userLoaded, setUserLoaded] = useState(userInState);
+    const [user, setUser] = useState(state.user);
+
+    useEffect(() => {
+        if (!userLoaded) {
+            axios
+                .get(config.CHECK_LOGIN_ENDPOINT)
+                .then((result) => {
+                    if (result.status === 200) {
+                        const isUserLoaded = true;
+                        setUserLoaded(isUserLoaded);
+                        setUser(result.data);
+                    }
+                })
+                .catch((error) => console.log(error));
+        }
+    }, []);
+
     return (
         <nav className='nav'>
             <input
@@ -24,24 +63,38 @@ const Navbar = () => {
             </label>
             <ul className='nav__menu'>
                 <li>
-                    <Link to={'/'}>
+                    <Link to={'/'} state={{ user: user }}>
                         <img src={logo} alt={''} className={'logo'} />
                     </Link>
                 </li>
                 <li>
-                    <Link to='/profile'>Profile</Link>
+                    <Link to='/profile' state={{ user: user }}>
+                        Profile
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/settings'>Settings</Link>
+                    <Link to='/settings' state={{ user: user }}>
+                        Settings
+                    </Link>
                 </li>
                 <li>
-                    <Link to='/team'>Team</Link>
+                    <Link to='/team' state={{ user: user }}>
+                        Team
+                    </Link>
                 </li>
                 <li>
-                    <InputGroup
-                        className='d-flex align-items-center input-group'
-                        controlId='search'
-                    >
+                    {!userLoaded ? (
+                        <Link to={'/login'} state={{ user: user }}>
+                            Sign in
+                        </Link>
+                    ) : (
+                        <Link to={'/logout'} state={{ user: user }}>
+                            Logout
+                        </Link>
+                    )}
+                </li>
+                <li>
+                    <InputGroup className='d-flex align-items-center input-group'>
                         <Form.Control type='text' placeholder='Search Mesh' />
                         <Button type='submit' variant='outline-secondary'>
                             <i className='fa-solid fa-magnifying-glass' />
