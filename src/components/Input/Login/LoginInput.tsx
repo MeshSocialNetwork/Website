@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import axios from 'axios';
 import config from '../../../config.json';
 import { toast } from 'react-toastify';
 import './loginInput.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginInput = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+    let navigate = useNavigate();
+
+    const handleUsernameChange = (event: FormEvent) => {
+        setUsername((event.target as HTMLInputElement).value);
     };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const handlePasswordChange = (event: FormEvent) => {
+        setPassword((event.target as HTMLInputElement).value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
         const credentials = {
@@ -31,7 +33,7 @@ const LoginInput = () => {
                 if (response.data.message) {
                     console.log('Logged in successfully');
 
-                    return (window.location = '/');
+                    navigate('/');
                 }
             })
             .catch((error) => {
@@ -61,8 +63,8 @@ const LoginInput = () => {
                     id='user'
                     className={'input'}
                     type='text'
-                    maxLength='16'
-                    minLength='4'
+                    maxLength={16}
+                    minLength={4}
                     required
                     placeholder='Username'
                     onChange={handleUsernameChange}
@@ -78,7 +80,7 @@ const LoginInput = () => {
                     className={'input'}
                     id='password'
                     type='password'
-                    minLength='6'
+                    minLength={6}
                     required
                     placeholder='Password'
                     onChange={handlePasswordChange}

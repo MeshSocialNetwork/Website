@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import App from '../../../App';
 
-const User = (props) => {
+const User = (props: any) => {
     let params = useParams();
     const navigate = useNavigate();
 

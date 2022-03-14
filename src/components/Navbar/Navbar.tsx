@@ -10,7 +10,7 @@ import config from '../../config.json';
 import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-    let { state } = useLocation();
+    let { state }: any = useLocation();
 
     if (!state) {
         state = {};

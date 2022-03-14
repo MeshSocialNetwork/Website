@@ -1,7 +1,8 @@
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../Navbar/Navbar';
 const config = require('../../../config.json');
 
@@ -11,9 +12,10 @@ const Profile = () => {
     const [imageURL, setImageURL] = useState('');
     const [isGif, setIsGif] = useState(false);
 
-    let { state } = useLocation();
+    let navigate = useNavigate();
+    let { state }: any = useLocation();
 
-    const validateSize = (file) => {
+    const validateSize = (file: File) => {
         const fileSize = file.size / 1024 / 1024;
 
         console.log(fileSize);
@@ -27,7 +29,7 @@ const Profile = () => {
         }
     };
 
-    const sendImageToCDN = (image) => {
+    const sendImageToCDN = (image: File) => {
         if (validateSize(image)) {
             if (image.name.includes('.gif')) {
                 axios
@@ -142,7 +144,7 @@ const Profile = () => {
                 .catch((error) => {
                     console.log(error.response.data.message);
 
-                    window.location = '/login';
+                    navigate('/login');
                 });
         }else{
             setUsername(state.user.name);
@@ -173,7 +175,7 @@ const Profile = () => {
                 type={'file'}
                 name={'upload-image'}
                 onChange={(event) => {
-                    sendImageToCDN(event.target.files[0]);
+                    sendImageToCDN(event.target.files![0]);
                 }}
             />
         </>

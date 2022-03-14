@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './post.scss';
 
-const Post = (props) => {
+const Post = (props: any) => {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [postLoaded, setPostLoaded] = useState(false);
 
