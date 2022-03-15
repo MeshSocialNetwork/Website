@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../Navbar/Navbar';
 import { toast } from 'react-toastify';
 import React, { FormEvent, useState } from 'react';
@@ -8,6 +8,7 @@ import config from '../../../config.json';
 
 const CreateCommunity = () => {
     let { state } = useLocation();
+    let navigate = useNavigate();
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -54,7 +55,7 @@ const CreateCommunity = () => {
                 if (response.data.message) {
                     console.log('Created community');
 
-                    //TODO: redirect to created community
+                    navigate(`/community/${name}`);
 
                     toast.success('Created community', {
                         position: 'top-right',
