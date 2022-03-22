@@ -7,7 +7,6 @@ import logo from '../../images/mesh-logo.png';
 import axios from 'axios';
 import config from '../../config.json';
 import { useLocation } from 'react-router-dom';
-import Popup from 'reactjs-popup';
 
 const Navbar = () => {
     let { state }: any = useLocation();
