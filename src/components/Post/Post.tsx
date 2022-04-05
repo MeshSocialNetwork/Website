@@ -12,7 +12,7 @@ const Post = (props: any) => {
 
                 <img
                     src={props.src}
-                    alt='post-image'
+                    alt='post'
                     className='post-image'
                     onLoad={() => setImageLoaded(true)}
                 />
