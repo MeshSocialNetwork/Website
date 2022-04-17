@@ -6,6 +6,7 @@ import axios from 'axios';
 import config from '../../../config.json';
 import { toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
+import Post from '../../Post/Post';
 
 const Community = () => {
     let params = useParams();
@@ -15,6 +16,7 @@ const Community = () => {
     const [communityName, setCommunityName] = useState('');
     const [communityDescription, setCommunityDescription] = useState('');
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const [posts, setPosts] = useState([]);
 
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
@@ -64,6 +66,8 @@ const Community = () => {
                 setCommunityName(result.data.name);
                 setCommunityDescription(result.data.description);
                 setIsSubscribed(result.data.subscribed);
+
+                setPosts(result.data.posts);
             })
             .catch((error) => {
                 console.log(error.response.data.message);
@@ -80,7 +84,7 @@ const Community = () => {
 
                 navigate('/create/community');
             });
-    }, []);
+    }, [params.name]);
 
     return (
         <>
@@ -94,6 +98,10 @@ const Community = () => {
             ) : (
                 <Button onClick={subscribeCommunity}>Subscribe</Button>
             )}
+
+            {posts.map((post) => (
+                <Post title={post.title} content={post.content} />
+            ))}
         </>
     );
 };

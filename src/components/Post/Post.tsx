@@ -17,6 +17,8 @@ const Post = (props: any) => {
                     onLoad={() => setImageLoaded(true)}
                 />
 
+                <p className='post-content'>{props.content}</p>
+
                 <button>
                     <i className='fa-solid fa-thumbs-up' />
                 </button>
@@ -35,6 +37,8 @@ const Post = (props: any) => {
         return (
             <div className='post-wrapper'>
                 <p className='post-title'>{props.title}</p>
+
+                <p className='post-content'>{props.content}</p>
 
                 <button>
                     <i className='fa-solid fa-thumbs-up' />
