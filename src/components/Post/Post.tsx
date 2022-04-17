@@ -35,7 +35,7 @@ const Post = (props: any) => {
         );
     } else {
         return (
-            <div className='post-wrapper'>
+            <div className='post-wrapper' key={props.id}>
                 <p className='post-title'>{props.title}</p>
 
                 <p className='post-content'>{props.content}</p>
