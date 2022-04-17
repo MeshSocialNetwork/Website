@@ -14,6 +14,9 @@ import User from './components/pages/User/User';
 import Error from './components/pages/Error/Error';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
+import CreateCommunity from './components/pages/Create/CreateCommunity';
+import Community from './components/pages/Community/Community';
+import CreatePost from './components/pages/Create/CreatePost';
 const config = require('./config.json');
 
 Sentry.init({
@@ -45,6 +48,9 @@ ReactDOM.render(
                 <Route path={'/login'} element={<Login />} />
                 <Route path={'/register'} element={<Register />} />
                 <Route path={'/user/:username'} element={<User />} />
+                <Route path={'/create/community'} element={<CreateCommunity />} />
+                <Route path={'/create/post'} element={<CreatePost />} />
+                <Route path={'/community/:name'} element={<Community />} />
                 <Route path={'/error'} element={<Error />} />
                 <Route
                     path={'*'}

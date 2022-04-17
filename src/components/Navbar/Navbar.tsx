@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
+import { NavDropdown, Button, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './navbar.scss';
 import logo from '../../images/mesh-logo.png';
@@ -100,6 +99,21 @@ const Navbar = () => {
                             <i className='fa-solid fa-magnifying-glass' />
                         </Button>
                     </InputGroup>
+                </li>
+                <li>
+                    <NavDropdown
+                        id='nav-dropdown-dark-example'
+                        title='Create'
+                        menuVariant='dark'
+                        color='white'
+                    >
+                        <NavDropdown.Item href='/create/community'>
+                            Community
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href='/create/post'>
+                            Post
+                        </NavDropdown.Item>
+                    </NavDropdown>
                 </li>
             </ul>
         </nav>

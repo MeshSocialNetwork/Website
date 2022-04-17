@@ -133,7 +133,7 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        if(!state || !state.user || Object.keys(state.user).length === 0){
+        if (!state || !state.user || Object.keys(state.user).length === 0) {
             axios
                 .get(config.CHECK_LOGIN_ENDPOINT)
                 .then((result) => {
@@ -146,7 +146,7 @@ const Profile = () => {
 
                     navigate('/login');
                 });
-        }else{
+        } else {
             setUsername(state.user.name);
             setEmail(state.user.email);
             setImageURL(state.user.image);

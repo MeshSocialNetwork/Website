@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import App from '../../../App';
+import { Spinner } from 'react-bootstrap';
 
 const User = (props: any) => {
     let params = useParams();
@@ -19,6 +20,7 @@ const User = (props: any) => {
                 setImageURL(result.data.image);
                 setChosenName(result.data.chosenName);
                 setUsername(result.data.name);
+                setLoaded(true);
             })
             .catch((error) => {
                 console.log(error);
@@ -46,9 +48,15 @@ const User = (props: any) => {
         <>
             <App />
 
-            <h1>{username}</h1>
-            <h2>{chosenName}</h2>
-            <div id={'avatar'} style={avatarStyle}></div>
+            {loaded ? (
+                <div>
+                    <h1>{username}</h1>
+                    <h2>{chosenName}</h2>
+                    <div id={'avatar'} style={avatarStyle}></div>
+                </div>
+            ) : (
+                <Spinner animation='border' variant='light' />
+            )}
         </>
     );
 };
