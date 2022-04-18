@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import App from '../../../App';
 import Post from '../../Post/Post';
+import Navbar from '../../Navbar/Navbar';
 const config = require('../../../config.json');
 
 const Frontpage = (props: any) => {
@@ -32,6 +32,8 @@ const Frontpage = (props: any) => {
 
     return (
         <>
+            <Navbar />
+
             {posts.map((post) => (
                 <Post id={post.id} title={post.title} content={post.content} />
             ))}

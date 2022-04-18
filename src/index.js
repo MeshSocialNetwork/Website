@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import Profile from './components/pages/Profile/Profile';
 import Settings from './components/pages/Settings/Settings';
 import Team from './components/pages/Team/Team';
@@ -17,6 +16,7 @@ import { BrowserTracing } from '@sentry/tracing';
 import CreateCommunity from './components/pages/Create/CreateCommunity';
 import Community from './components/pages/Community/Community';
 import CreatePost from './components/pages/Create/CreatePost';
+import Frontpage from './components/pages/Frontpage/Frontpage';
 const config = require('./config.json');
 
 Sentry.init({
@@ -41,14 +41,17 @@ ReactDOM.render(
                 pauseOnHover
             />
             <Routes>
-                <Route path={'/'} element={<App />} />
+                <Route path={'/'} element={<Frontpage />} />
                 <Route path={'/profile'} element={<Profile />} />
                 <Route path={'/settings'} element={<Settings />} />
                 <Route path={'/team'} element={<Team />} />
                 <Route path={'/login'} element={<Login />} />
                 <Route path={'/register'} element={<Register />} />
                 <Route path={'/user/:username'} element={<User />} />
-                <Route path={'/create/community'} element={<CreateCommunity />} />
+                <Route
+                    path={'/create/community'}
+                    element={<CreateCommunity />}
+                />
                 <Route path={'/create/post'} element={<CreatePost />} />
                 <Route path={'/community/:name'} element={<Community />} />
                 <Route path={'/error'} element={<Error />} />
