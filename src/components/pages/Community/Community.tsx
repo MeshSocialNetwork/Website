@@ -100,7 +100,7 @@ const Community = () => {
             )}
 
             {posts.map((post) => (
-                <Post title={post.title} content={post.content} />
+                <Post id={post.id} title={post.title} content={post.content} />
             ))}
         </>
     );
